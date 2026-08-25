@@ -21,10 +21,6 @@ jobs:
         run: |
           echo "#EXTM3U" > ott_navigator.m3u
 
-          # Add custom channel (Base64 encoded)
-          echo "${{ secrets.CUSTOM_CHANNEL_B64 }}" | base64 -d >> ott_navigator.m3u
-          echo "" >> ott_navigator.m3u
-
           # Append downloaded playlist (skip duplicate header)
           grep -v "^#EXTM3U" source.m3u >> ott_navigator.m3u
 
@@ -34,7 +30,6 @@ jobs:
 
       - name: Update JSON & Generate Temp Files
         run: |
-          # Update NS_player.json
           jq '
             map(
               . as $item
@@ -52,11 +47,9 @@ jobs:
 
           mv tmp.json NS_player.json
 
-          # Create temp folder
           rm -rf temp
           mkdir -p temp
 
-          # Create temp/{id}.json
           jq -c '.[]' NS_player.json | while read -r item; do
             id=$(echo "$item" | jq -r '.id')
 
