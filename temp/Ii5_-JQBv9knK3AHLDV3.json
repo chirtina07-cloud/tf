@@ -1,4 +1,4 @@
 {
-  "playbacks_url": "https://prod-linear-media.toffeelive.com/cdn/live/sonymax_2/playlist.m3u8?edge-cache-token=Expires=1790646316~Starts=1790642716~URLPrefix=aHR0cHM6Ly9wcm9kLWxpbmVhci1tZWRpYS50b2ZmZWVsaXZlLmNvbQ~Data=eyJzdWJzY3JpYmVyX2lkIjoiNjkyZjU2OWQtNzE2Mi00MDcwLWEwYTktNDA0MWYwMTQxMWQ1In0~Signature=n6s8ZCdtFjrUE6KkdK0o9-aD4dMl7nd7uXleXTdXY_B1PBbE7WLX0jlmBRaEs3UjFd1VIlg0ybudX7IqVMrcCg|cookie=",
-  "sony_max_2_playbacks_url": "https://prod-linear-media.toffeelive.com/cdn/live/sonymax_2/playlist.m3u8?edge-cache-token=Expires=1790646316~Starts=1790642716~URLPrefix=aHR0cHM6Ly9wcm9kLWxpbmVhci1tZWRpYS50b2ZmZWVsaXZlLmNvbQ~Data=eyJzdWJzY3JpYmVyX2lkIjoiNjkyZjU2OWQtNzE2Mi00MDcwLWEwYTktNDA0MWYwMTQxMWQ1In0~Signature=n6s8ZCdtFjrUE6KkdK0o9-aD4dMl7nd7uXleXTdXY_B1PBbE7WLX0jlmBRaEs3UjFd1VIlg0ybudX7IqVMrcCg|cookie="
+  "playbacks_url": "https://bldcmprod-cdn.toffeelive.com/cdn/live/sonymax_2/playlist.m3u8|cookie=",
+  "sony_max_2_playbacks_url": "https://bldcmprod-cdn.toffeelive.com/cdn/live/sonymax_2/playlist.m3u8|cookie="
 }

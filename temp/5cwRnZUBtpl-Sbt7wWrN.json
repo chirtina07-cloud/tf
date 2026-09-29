@@ -1,4 +1,4 @@
 {
-  "playbacks_url": "https://prod-linear-media.toffeelive.com/cdn/live/and_tv_hd/playlist.m3u8?edge-cache-token=Expires=1790646289~Starts=1790642689~URLPrefix=aHR0cHM6Ly9wcm9kLWxpbmVhci1tZWRpYS50b2ZmZWVsaXZlLmNvbQ~Data=eyJzdWJzY3JpYmVyX2lkIjoiNjkyZjU2OWQtNzE2Mi00MDcwLWEwYTktNDA0MWYwMTQxMWQ1In0~Signature=IxaOKyAxEbSZZDpiJrJKIvW-DJaxFYshj-BlndnJD3pc-vrsJTyRb9HydaIqc_g53UQnz71ZkqTMvJ9qqGxuBA|cookie=",
-  "tv_hd_playbacks_url": "https://prod-linear-media.toffeelive.com/cdn/live/and_tv_hd/playlist.m3u8?edge-cache-token=Expires=1790646289~Starts=1790642689~URLPrefix=aHR0cHM6Ly9wcm9kLWxpbmVhci1tZWRpYS50b2ZmZWVsaXZlLmNvbQ~Data=eyJzdWJzY3JpYmVyX2lkIjoiNjkyZjU2OWQtNzE2Mi00MDcwLWEwYTktNDA0MWYwMTQxMWQ1In0~Signature=IxaOKyAxEbSZZDpiJrJKIvW-DJaxFYshj-BlndnJD3pc-vrsJTyRb9HydaIqc_g53UQnz71ZkqTMvJ9qqGxuBA|cookie="
+  "playbacks_url": "https://bldcmprod-cdn.toffeelive.com/cdn/live/and_tv_hd/playlist.m3u8|cookie=",
+  "tv_hd_playbacks_url": "https://bldcmprod-cdn.toffeelive.com/cdn/live/and_tv_hd/playlist.m3u8|cookie="
 }
