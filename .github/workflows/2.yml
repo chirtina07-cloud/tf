@@ -20,7 +20,7 @@ jobs:
       - name: Build Final M3U
         run: |
           echo "#EXTM3U" > ott_navigator.m3u
-          grep -v "^#EXTM3U" source.m3u >> ott_navigator.m3u
+          grep -vE '^#(EXTM3U| name:| telegram:| owner:| last_update:)' source.m3u >> ott_navigator.m3u
 
       - name: Generate JSON from M3U
         run: |
