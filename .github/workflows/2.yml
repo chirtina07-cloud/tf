@@ -15,7 +15,7 @@ jobs:
 
       - name: Download M3U
         run: |
-          curl -L --fail "${{ secrets.PRIMARY_URL }}" -o source.m3u
+          curl -L --fail "${{ secrets.PRIMARY_URL2 }}" -o source.m3u
 
       - name: Build Final M3U
         run: |
@@ -135,4 +135,4 @@ jobs:
 
           git commit -m "Auto update playlist & JSON" || exit 0
 
-          git pushush
+          git push
