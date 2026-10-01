@@ -20,13 +20,64 @@ jobs:
       - name: Build Final M3U
         run: |
           echo "#EXTM3U" > ott_navigator.m3u
-
-          # Append downloaded playlist (skip duplicate header)
           grep -v "^#EXTM3U" source.m3u >> ott_navigator.m3u
 
-      - name: Download JSON
+      - name: Generate JSON from M3U
         run: |
-          curl -L --fail "${{ secrets.JSON_URL }}" -o NS_player.json
+          python3 <<'PY'
+          import re
+          import json
+
+          input_file = "source.m3u"
+          output_file = "NS_player.json"
+
+          items = []
+
+          with open(input_file, "r", encoding="utf-8", errors="ignore") as f:
+              lines = [line.strip() for line in f if line.strip()]
+
+          for i, line in enumerate(lines):
+              if not line.startswith("#EXTINF:"):
+                  continue
+
+              if i + 1 >= len(lines):
+                  continue
+
+              url = lines[i + 1]
+
+              if url.startswith("#"):
+                  continue
+
+              tvg_id = re.search(r'tvg-id="([^"]*)"', line)
+              tvg_logo = re.search(r'tvg-logo="([^"]*)"', line)
+              group_title = re.search(r'group-title="([^"]*)"', line)
+
+              name = line.split(",", 1)[1].strip() if "," in line else ""
+
+              tvg_id = tvg_id.group(1) if tvg_id else ""
+              tvg_logo = tvg_logo.group(1) if tvg_logo else ""
+              group_title = group_title.group(1) if group_title else ""
+
+              if "|cookie=" in url:
+                  link, cookie = url.split("|cookie=", 1)
+              else:
+                  link = url
+                  cookie = ""
+
+              item_id = tvg_id or str(i)
+
+              items.append({
+                  "id": item_id,
+                  "name": name,
+                  "link": link,
+                  "cookie": cookie,
+                  "logo": tvg_logo,
+                  "group": group_title
+              })
+
+          with open(output_file, "w", encoding="utf-8") as f:
+              json.dump(items, f, ensure_ascii=False, indent=2)
+          PY
 
       - name: Update JSON & Generate Temp Files
         run: |
@@ -38,9 +89,15 @@ jobs:
                   | gsub("[^a-z0-9]+";"_")
                   | gsub("^_|_$";"")
                 ) as $key
-              | .single_playbacks_url = (.link + "|cookie=" + .cookie)
+              | .single_playbacks_url = (
+                  .link
+                  + (if .cookie != "" then "|cookie=" + .cookie else "" end)
+                )
               | . + {
-                  ($key + "_playbacks_url"): (.link + "|cookie=" + .cookie)
+                  ($key + "_playbacks_url"): (
+                    .link
+                    + (if .cookie != "" then "|cookie=" + .cookie else "" end)
+                  )
                 }
             )
           ' NS_player.json > tmp.json
@@ -57,7 +114,7 @@ jobs:
               | tr '[:upper:]' '[:lower:]' \
               | sed -E 's/[^a-z0-9]+/_/g;s/^_+|_+$//g')
 
-            value=$(echo "$item" | jq -r '.link + "|cookie=" + .cookie')
+            value=$(echo "$item" | jq -r '.single_playbacks_url')
 
             jq -n \
               --arg key "${key}_playbacks_url" \
@@ -78,4 +135,4 @@ jobs:
 
           git commit -m "Auto update playlist & JSON" || exit 0
 
-          git push
+          git pushush
